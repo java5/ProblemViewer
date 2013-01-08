@@ -8,7 +8,7 @@
     <c:set var="titleKey">
       <tiles:getAsString name="title" />
     </c:set>
-    <title>Bookstore </title>
+    <title>Bookstore</title>
   </head>
   <body>
     <div id="wrap">
