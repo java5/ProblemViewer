@@ -7,10 +7,20 @@ import org.springframework.web.servlet.view.tiles2.TilesViewResolver;
 
 @Configuration
 public class ViewConfiguration {
+  /**
+   * Configures Tiles at application startup.
+   */
   @Bean
   public TilesConfigurer tilesConfigurer() {
-    return new TilesConfigurer();
+    TilesConfigurer configurer = new TilesConfigurer();
+    configurer.setDefinitions(new String[]{
+              "/WEB-INF/layouts/layouts.xml",
+              "/WEB-INF/views/**/views.xml"
+            });
+    configurer.setCheckRefresh(true);
+    return configurer;
   }
+
   @Bean
   public TilesViewResolver tilesViewResolver() {
     TilesViewResolver tilesViewResolver = new TilesViewResolver();

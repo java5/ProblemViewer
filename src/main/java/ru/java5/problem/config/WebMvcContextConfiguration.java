@@ -37,23 +37,18 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
   public void addResourceHandlers(final ResourceHandlerRegistry registry) {
     registry.addResourceHandler("/resources/**/*").addResourceLocations("classpath:/META-INF/web-resources/");
   }
-
   @Override
   public void addViewControllers(final ViewControllerRegistry registry) {
     registry.addViewController("/index.htm").setViewName("index");
   }
-
   @Override
   public void configureDefaultServletHandling(final DefaultServletHandlerConfigurer configurer) {
     configurer.enable();
   }
-
   @Bean
   public LocaleResolver localeResolver() {
     return new CookieLocaleResolver();
   }
-
-
   @Bean
   public MessageSource messageSource() {
     ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
