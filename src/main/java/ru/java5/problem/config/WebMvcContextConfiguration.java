@@ -39,7 +39,7 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
   }
   @Override
   public void addViewControllers(final ViewControllerRegistry registry) {
-    registry.addViewController("/index.htm").setViewName("index");
+    registry.addViewController("/index.htm").setViewName("contacts/show");
   }
   @Override
   public void configureDefaultServletHandling(final DefaultServletHandlerConfigurer configurer) {
