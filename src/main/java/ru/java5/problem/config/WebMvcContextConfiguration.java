@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.LocaleResolver;
@@ -19,17 +20,13 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 /**
  * Configures Spring MVC.
  *
- * @author Marten Deinum
- * @author Koen Serneels
+ * @author 
  */
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"ru.java5.problem"})
 @PropertySource("classpath:application.properties")
 public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
-  private static final String PROPERTY_NAME_MESSAGESOURCE_BASENAME = "message.source.basename";
-  private static final String PROPERTY_NAME_MESSAGESOURCE_USE_CODE_AS_DEFAULT_MESSAGE = "message.source.use.code.as.default.message";  
-  
   @Resource
   private Environment environment;  
 
@@ -51,11 +48,11 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
   }
   @Bean
   public MessageSource messageSource() {
-    ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-
-    messageSource.setBasename(environment.getRequiredProperty(PROPERTY_NAME_MESSAGESOURCE_BASENAME));
-    messageSource.setUseCodeAsDefaultMessage(Boolean.parseBoolean(environment.getRequiredProperty(PROPERTY_NAME_MESSAGESOURCE_USE_CODE_AS_DEFAULT_MESSAGE)));
-
+    ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+    //ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+    messageSource.setBasenames(new String[]{ "WEB-INF/i18n/messages", "WEB-INF/i18n/application" });
+    messageSource.setUseCodeAsDefaultMessage(true);
+    
     return messageSource;
   }
 }
