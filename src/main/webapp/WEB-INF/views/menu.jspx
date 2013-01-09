@@ -15,11 +15,11 @@
   <spring:url var="loginUrl" value="/j_spring_security_check" />
 
   <h3>${menuHeaderText}</h3>
-<!--  <sec:authorize access="hasRole('ROLE_USER')">
+  <sec:authorize access="hasRole('ROLE_USER')">
     <a href="${addContactUrl}"><h3 id="addContactLink">${menuAddContact}</h3></a>
-  </sec:authorize>-->
+  </sec:authorize>
 
-<!--  <sec:authorize access="isAnonymous()">
+  <sec:authorize access="isAnonymous()">
     <div id="login">
       <form name="loginForm" action="${loginUrl}" method="post">
         <table>
@@ -38,5 +38,5 @@
         </table>
       </form>
     </div> 
-  </sec:authorize>-->
+  </sec:authorize>
 </div>
