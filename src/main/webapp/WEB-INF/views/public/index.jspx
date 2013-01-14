@@ -4,6 +4,21 @@
   <!-- any content can be specified here, e.g.: -->
   <jsp:element name="text">
     <jsp:attribute name="lang">EN</jsp:attribute>
-    <jsp:body>Hello World!</jsp:body>
+    <jsp:body>
+      Hello World!
+    Patenting a new drug helps finance its immense cost to develop -- but that same patent can put advanced treatments out of reach for sick people in developing nations, at deadly cost. Ellen 't Hoen talks about an elegant, working solution to the problem: the Medicines Patent Pool. (Filmed at TEDxZurich.)
+
+The founder of the Medicines Patent Pool, Ellen 't Hoen works (and makes change) at the place where profit and health collide: patented drugs.
+an we incentivize companies to produce much-needed drugs? Thomas Pogge proposes a $6 billion plan to revolutionize the way medications are developed and sold. (Filmed at TEDxCanberra.)
+
+Philosopher Thomas Pogge wants to ensure medications get to those who need it most. He has published on a wide range of subjects such as global justice and human rights.
+Dr. Ernest Madu runs the Heart Institute of the Caribbean in Kingston, Jamaica, where he proves that -- with careful design, smart technical choices, and a true desire to serve -- it's possible to offer world-class healthcare in the developing world.
+
+Ernest Madu founded the Heart Institute of the Caribbean, a revolutionary clinic for cardiovascular diseases in Kingston, Jamaica -- revolutionary for offering first-class health care in a developing nation. His next stop: Nigeria. 
+Accepting the 2007 TED Prize, Bill Clinton asks for help in bringing health care to Rwanda -- and the rest of the world.
+
+Through his William J. Clinton Foundation, former US President Bill Clinton has become a vital and innovative force for world change. He works in four critical areas: health, economic empowerment, citizen service, and reconciliation.
+In a world with no systems, with chaos, everything becomes a guerilla struggle, and predictability is not there. It becomes almost impossible to save lives, educate kids, develop economies.” (Bill Clinton)
+    </jsp:body>
   </jsp:element>
 </jsp:root>
