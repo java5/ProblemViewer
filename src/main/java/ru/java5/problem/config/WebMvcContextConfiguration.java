@@ -41,7 +41,6 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
   }
   @Override
   public void addViewControllers(final ViewControllerRegistry registry) {
-    // registry.addViewController("/index.htm").setViewName("contacts/show");
     registry.addViewController("/index.htm").setViewName("public/index");
   }
   @Override
@@ -69,7 +68,6 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
     ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
     messageSource.setBasenames(new String[]{ "WEB-INF/i18n/messages", "WEB-INF/i18n/application" });
     messageSource.setUseCodeAsDefaultMessage(true);
-    
     return messageSource;
   }
 }
