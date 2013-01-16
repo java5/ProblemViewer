@@ -9,13 +9,17 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 /**
  * Configures Spring MVC.
@@ -43,6 +47,18 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
   @Override
   public void configureDefaultServletHandling(final DefaultServletHandlerConfigurer configurer) {
     configurer.enable();
+  }
+  @Bean
+  public HandlerInterceptor localeChangeInterceptor() {
+    LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+    localeChangeInterceptor.setParamName("lang");
+    return localeChangeInterceptor;
+  }
+  @Override
+  public void addInterceptors(InterceptorRegistry registry) {
+    InterceptorRegistration registration;
+    registration = registry.addInterceptor(localeChangeInterceptor());
+    registration.addPathPatterns("/**");
   }
   @Bean
   public LocaleResolver localeResolver() {
