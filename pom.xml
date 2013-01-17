@@ -9,16 +9,13 @@
   <properties>
     <java-version>1.6</java-version>
     <spring.version>3.1.2.RELEASE</spring.version>
-    <org.springsecurity-version>3.1.0.RELEASE</org.springsecurity-version>
-    <org.aspectj-version>1.6.11</org.aspectj-version>
-    <h2.version>1.3.163</h2.version>
-    <spring.data.version>1.2.0.RELEASE</spring.data.version>
+    <spring-data-jpa.version>1.2.0.RELEASE</spring-data-jpa.version>     
+    <spring-security.version>3.1.0.RELEASE</spring-security.version>
     <hibernate.version>4.1.4.Final</hibernate.version> 
-    <hibernate.validator.version>4.2.0.Final</hibernate.validator.version>         
-    <slf4j.version>1.6.1</slf4j.version>
-    <spring.batch.version>2.1.8.RELEASE</spring.batch.version>
-    <spring.integration.version>2.1.0.RELEASE</spring.integration.version>
-    <org.springframework.security-version>3.1.0.RELEASE</org.springframework.security-version>
+    <log4j.version>1.2.17</log4j.version> 
+    <slf4j.version>1.6.1</slf4j.version>    
+    <h2.version>1.3.163</h2.version>
+    
     <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>    
     <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -47,7 +44,7 @@
       <artifactId>bonecp</artifactId>
       <version>0.7.1.RELEASE</version>
     </dependency>
-<!-- Spring Framework -->
+    <!-- Spring Framework -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-beans</artifactId>
@@ -107,32 +104,32 @@
       <artifactId>spring-aspects</artifactId>
       <version>${spring.version}</version>
     </dependency>
-
     <!-- Spring Data JPA -->           
     <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-jpa</artifactId>
-      <version>${spring.data.version}</version>
-    </dependency>    
+      <version>${spring-data-jpa.version}</version>
+    </dependency> 
+    <!-- Spring Security -->         
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-core</artifactId>
-      <version>${org.springframework.security-version}</version>
+      <version>${spring-security.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-web</artifactId>
-      <version>${org.springframework.security-version}</version>
+      <version>${spring-security.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-taglibs</artifactId>
-      <version>${org.springframework.security-version}</version>
+      <version>${spring-security.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-config</artifactId>
-      <version>${org.springframework.security-version}</version>
+      <version>${spring-security.version}</version>
     </dependency>  
     <!-- Logging dependencies -->
     <dependency>
@@ -148,7 +145,7 @@
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
-      <version>1.2.16</version>
+      <version>${log4j.version}</version>
     </dependency>      
     <!-- Servlet -->
     <dependency>
@@ -205,7 +202,13 @@
       <groupId>org.apache.tiles</groupId>
       <artifactId>tiles-jsp</artifactId>
       <version>2.2.2</version>
-    </dependency> 
+    </dependency>
+    <!-- MySql -->      
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.21</version>
+    </dependency>    
   </dependencies>
   <build>
     <plugins>

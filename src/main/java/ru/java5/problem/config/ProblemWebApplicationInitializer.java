@@ -1,4 +1,4 @@
-package ru.java5.problem;
+package ru.java5.problem.config;
 
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
@@ -12,8 +12,6 @@ import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
-import ru.java5.problem.config.ViewConfiguration;
-import ru.java5.problem.config.WebMvcContextConfiguration;
 
 /**
  * @author Зайнуллин Радик
