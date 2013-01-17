@@ -11,7 +11,6 @@
     <spring.version>3.1.2.RELEASE</spring.version>
     <org.springsecurity-version>3.1.0.RELEASE</org.springsecurity-version>
     <org.aspectj-version>1.6.11</org.aspectj-version>
-    <org.slf4j-version>1.5.10</org.slf4j-version>
     <h2.version>1.3.163</h2.version>
     <spring.data.version>1.2.0.RELEASE</spring.data.version>
     <hibernate.version>4.1.4.Final</hibernate.version> 
@@ -206,7 +205,7 @@
       <groupId>org.apache.tiles</groupId>
       <artifactId>tiles-jsp</artifactId>
       <version>2.2.2</version>
-    </dependency>        
+    </dependency> 
   </dependencies>
   <build>
     <plugins>
