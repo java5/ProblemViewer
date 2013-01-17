@@ -17,7 +17,9 @@ public class ViewConfiguration {
               "/WEB-INF/layouts/layouts.xml",
               "/WEB-INF/views/**/views.xml"
             });
+    
     configurer.setCheckRefresh(true);
+    
     return configurer;
   }
 
