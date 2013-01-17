@@ -12,17 +12,15 @@ import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
+import ru.java5.problem.config.ViewConfiguration;
 import ru.java5.problem.config.WebMvcContextConfiguration;
 
 /**
  * @author Зайнуллин Радик
  */
 public class ProblemWebApplicationInitializer implements WebApplicationInitializer {
-
   private static final Class<?>[] configurationClasses = new Class<?>[]{
-    //      TestDataContextConfiguration.class,
-    WebMvcContextConfiguration.class, //      InfrastructureContextConfiguration.class,
-  //      WebflowContextConfiguration.class 
+    ViewConfiguration.class, WebMvcContextConfiguration.class
   };
 
   @Override
