@@ -9,8 +9,8 @@
   <spring:message code="menu_header_text" var="menuHeaderText"/>
   <spring:message code="menu_view_math" var="menuViewMath"/>
   <spring:message code="menu_view_mechanics" var="menuViewMechanics"/>
-  <spring:url value="/index?math" var="viewMathUrl"/>
-  <spring:url value="/index?mechanics" var="viewMechanicsUrl"/>
+  <spring:url value="/problems.htm?value=math" var="viewMathUrl"/>
+  <spring:url value="/problems.htm?value=mechanics" var="viewMechanicsUrl"/>
   <h3>${menuHeaderText}</h3>
     <div>
       <ul>
