@@ -66,7 +66,7 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
    * @param configurer
    */
   @Override
-  public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+  public void configureDefaultServletHandling(final DefaultServletHandlerConfigurer configurer) {
     configurer.enable();
   }
 
