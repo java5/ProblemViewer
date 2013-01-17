@@ -25,4 +25,8 @@ public class Problem implements Serializable {
   public String getJson() {
     return json;
   }
+
+  public void setJson(String json) {
+    this.json = json;
+  }
 }
