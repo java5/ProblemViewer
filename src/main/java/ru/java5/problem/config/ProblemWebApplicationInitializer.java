@@ -18,7 +18,8 @@ import org.springframework.web.servlet.DispatcherServlet;
  */
 public class ProblemWebApplicationInitializer implements WebApplicationInitializer {
   private static final Class<?>[] configurationClasses = new Class<?>[]{
-    ViewConfiguration.class, WebMvcContextConfiguration.class
+    ViewConfiguration.class, WebMvcContextConfiguration.class, DataConfigProduction.class, DataConfigDevelopment.class,
+    SecurityConfig.class
   };
 
   @Override
@@ -44,9 +45,7 @@ public class ProblemWebApplicationInitializer implements WebApplicationInitializ
 
   /**
    * Factory method to create {@link AnnotationConfigWebApplicationContext} instances.
-   *
    * @param annotatedClasses
-   * @return
    */
   private AnnotationConfigWebApplicationContext createContext(final Class<?>... annotatedClasses) {
     AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();

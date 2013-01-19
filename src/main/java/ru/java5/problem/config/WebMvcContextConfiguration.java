@@ -1,14 +1,15 @@
 package ru.java5.problem.config;
 
-import com.jolbox.bonecp.BoneCPDataSource;
 import java.util.Properties;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
@@ -39,12 +40,9 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
   "ru.java5.problem.jpa.service"
 })
 @PropertySource("classpath:application.properties")
-@ImportResource("WEB-INF/problem-security.xml")
+//@Profile(value = "dev")
+//@ImportResource("WEB-INF/problem-security.xml")
 public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
-  private static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driver";
-  private static final String PROPERTY_NAME_DATABASE_PASSWORD = "db.password";
-  private static final String PROPERTY_NAME_DATABASE_URL = "db.url";
-  private static final String PROPERTY_NAME_DATABASE_USERNAME = "db.username";
   private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
   private static final String PROPERTY_NAME_HIBERNATE_FORMAT_SQL = "hibernate.format_sql";
   private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "hibernate.hbm2ddl.auto";
@@ -53,6 +51,9 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
   private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "entitymanager.packages.to.scan";
   @Resource
   private Environment environment;
+  
+  @Autowired
+  private DataSource dataSource;
 
   @Override
   public void addResourceHandlers(final ResourceHandlerRegistry registry) {
@@ -62,7 +63,6 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
   /**
    * Ensures that dispatcher servlet can be mapped to '/' and static resources are still served by the containers
    * default servlet.
-   *
    * @param configurer
    */
   @Override
@@ -75,42 +75,21 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
     registry.addViewController("/index.htm").setViewName("public/index");
     registry.addViewController("/problems.htm").setViewName("public/problems");
   }
-
-  /**
-   * Configures the data source.
-   *
-   * @return
-   */
-  @Bean
-  public DataSource dataSource() {
-    BoneCPDataSource dataSource = new BoneCPDataSource();
-
-    dataSource.setDriverClass(environment.getRequiredProperty(PROPERTY_NAME_DATABASE_DRIVER));
-    dataSource.setJdbcUrl(environment.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
-    dataSource.setUsername(environment.getRequiredProperty(PROPERTY_NAME_DATABASE_USERNAME));
-    dataSource.setPassword(environment.getRequiredProperty(PROPERTY_NAME_DATABASE_PASSWORD));
-
-    return dataSource;
-  }
-
   @Bean
   public HandlerInterceptor localeChangeInterceptor() {
     LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
     localeChangeInterceptor.setParamName("lang");
     return localeChangeInterceptor;
   }
-
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
     InterceptorRegistration registration = registry.addInterceptor(localeChangeInterceptor());
     registration.addPathPatterns("/**");
   }
-
   @Bean
   public LocaleResolver localeResolver() {
     return new CookieLocaleResolver();
   }
-
   @Bean
   public MessageSource messageSource() {
     ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
@@ -118,31 +97,20 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
     messageSource.setUseCodeAsDefaultMessage(true);
     return messageSource;
   }
-
-  /**
-   * Configures the transaction manager.
-   *
-   * @return
-   */
+  /** Configures the transaction manager. */
   @Bean
   public JpaTransactionManager transactionManager() {
     JpaTransactionManager transactionManager = new JpaTransactionManager();
-
     transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
-
     return transactionManager;
   }
 
-  /**
-   * Configures the entity manager factory.
-   *
-   * @return
-   */
+  /** Configures the entity manager factory. */
   @Bean
   public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
     LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 
-    entityManagerFactoryBean.setDataSource(dataSource());
+    entityManagerFactoryBean.setDataSource(dataSource);
     entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
     entityManagerFactoryBean.setPackagesToScan(environment.getRequiredProperty(PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN));
 
@@ -157,12 +125,7 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
 
     return entityManagerFactoryBean;
   }
-
-  /**
-   * Configures the exception resolver.
-   *
-   * @return
-   */
+  /** Configures the exception resolver. */
   @Bean
   public SimpleMappingExceptionResolver exceptionResolver() {
     SimpleMappingExceptionResolver exceptionResolver = new SimpleMappingExceptionResolver();
