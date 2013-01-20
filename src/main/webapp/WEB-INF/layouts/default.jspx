@@ -11,7 +11,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=8" />
     
-    <link rel="stylesheet" type="text/css" href="/resources/styles/standard.css" />"
+    <link rel="stylesheet" type="text/css" href="/view/resources/styles/standard.css" />"
 
     <!-- Get the user locale from the page context (it was set by Spring MVC's locale resolver) -->
     <c:set var="userLocale">
