@@ -40,6 +40,7 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
   "ru.java5.problem.jpa.service"
 })
 @PropertySource("classpath:application.properties")
+// @Resource()
 //@Profile(value = "dev")
 //@ImportResource("WEB-INF/problem-security.xml")
 public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
@@ -57,7 +58,11 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
 
   @Override
   public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-    registry.addResourceHandler("/resources/**/*").addResourceLocations("classpath:/META-INF/web-resources/");
+    // registry.addResourceHandler("/styles/**").addResourceLocations("classpath:/WEB-INF/styles/");
+    //registry.addResourceHandler("/resources/styles/**").addResourceLocations("/WEB-INF/styles/");
+    //registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/").setCachePeriod(31556926);
+    registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCachePeriod(31556926);
+    
   }
 
   /**
@@ -72,8 +77,10 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
 
   @Override
   public void addViewControllers(final ViewControllerRegistry registry) {
-    registry.addViewController("/index.htm").setViewName("public/index");
-    registry.addViewController("/problems.htm").setViewName("public/problems");
+    registry.addViewController("/public/index.htm").setViewName("public/index");
+    registry.addViewController("/public/problems.htm").setViewName("public/problems");
+    registry.addViewController("/public/signin.htm").setViewName("/public/signin");
+    
   }
   @Bean
   public HandlerInterceptor localeChangeInterceptor() {

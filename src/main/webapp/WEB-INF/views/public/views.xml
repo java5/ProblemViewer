@@ -7,4 +7,7 @@
   <definition extends="default" name="public/problems">
     <put-attribute name="body" value="/WEB-INF/views/public/problems.jspx" />
   </definition>
+  <definition extends="default" name="public/signin">
+    <put-attribute name="body" value="/WEB-INF/views/public/signin.jspx" />
+  </definition>  
 </tiles-definitions>
